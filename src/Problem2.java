@@ -56,7 +56,7 @@ credit)*/
     public static void main(String[] args) {
         FileInputStream file_in = null;
         try {
-             file_in = new FileInputStream(new File("src/Q2_inputs/input5.txt"));
+             file_in = new FileInputStream(new File("src/Q2_inputs/input.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
             e.printStackTrace();
