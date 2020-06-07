@@ -28,6 +28,9 @@ you decide to check whether it is safe to give your friend an array.  */
                 if (arr[i] % 2 == 0){
                     evenNumCount += 1;
                 }
+                if (evenNumCount > 1){
+                    break;
+                }
             }
             if (evenNumCount == 1){
                 System.out.println("NO");
@@ -41,7 +44,7 @@ you decide to check whether it is safe to give your friend an array.  */
     public static void main(String[] args) {
         FileInputStream file_in = null;
         try {
-            file_in = new FileInputStream(new File("src/Q1_input.txt"));
+            file_in = new FileInputStream(new File("src/Q1_inputs/Q1_input.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
             e.printStackTrace();
