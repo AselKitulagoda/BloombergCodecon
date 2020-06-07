@@ -14,22 +14,20 @@ public class Problem2 {
         String replacement_string = "";
         String final_replacement_string = "";
         String regex = "(\\p{Lu})";
-        String regex_without_brackets = "(?<=\\[).+?(?=\\])";
-        String regex_brack = "\\(";
-        String regex_brack_2 = "\\)";
         for (int i=size_of_arr-1;i>=0;i--){
             if (pos[i] >= 0 && pos[i] < length_of_message){
                 pos_substring = temp_message.substring(pos[i],length_of_message);
                 replacement_string = pos_substring.replaceAll(first_arr[i],second_arr[i]);
-                System.out.println("got here ");
                 final_replacement_string = replacement_string.replaceAll(regex+first_arr[i],second_arr[i].toUpperCase());
-                System.out.println("here");
-                if (pos_substring.contains(")")) {
-                    temp_message = temp_message.replaceFirst(pos_substring.replaceFirst("\\)", ""), final_replacement_string);
+                if ((pos_substring.contains("(")) && (pos_substring.contains(")"))){
+                    temp_message = temp_message.replaceFirst(pos_substring, final_replacement_string);
+                }
+                else if (pos_substring.contains(")")) {
+                    temp_message = temp_message.replaceFirst("\\)", "").replaceFirst(pos_substring.replaceFirst("\\)", ""), final_replacement_string);
                 }
                 else if (pos_substring.contains("(")){
-                    System.out.println("now here");
-                    temp_message=temp_message.replaceFirst(pos_substring.replaceFirst("\\(", ""),final_replacement_string);
+                    temp_message=temp_message.replaceFirst("\\(", "").replaceFirst(pos_substring.replaceFirst("\\(", ""),final_replacement_string);
+
                 }
                 else {
                     temp_message = temp_message.replaceFirst(pos_substring, final_replacement_string);
@@ -39,11 +37,12 @@ public class Problem2 {
         }
         System.out.println(temp_message);
     }
+    //People that I have afbushed and mobbed ro wam: Heimy C., Rngflid E., Evaigeunia deM., Aetem A. (tince), pfd thpt gly inth the wlffy soldtpche
 
     public static void main(String[] args) {
         FileInputStream file_in = null;
         try {
-             file_in = new FileInputStream(new File("src/Q2_inputs/input2.txt"));
+             file_in = new FileInputStream(new File("src/Q2_inputs/input5.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
             e.printStackTrace();
