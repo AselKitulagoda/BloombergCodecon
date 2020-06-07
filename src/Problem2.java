@@ -6,6 +6,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Problem2 {
+    /* Inspector Catchburgle is on a case! He is chasing a mysterious villain that goes by the name Vile Angus.
+Fortunately, Angus has a bad memory and tends to write a lot of things down. And Catchburgle just found
+a pile of the scoundrel's notes! There must be lots of valuable clues in them!
+However, Angus isn't stupid; he was encrypting his messages with some cipher, so that they are not so
+easy to read.
+Inspector Catchburgle has applied his brilliant logic, and found out that the villain uses some sort of a
+substitution cipher. It seems that he goes over the text multiple times, and each time swaps two letters
+in part of the text from a random position to the end.
+But that's not all! The bright detective has even figured out the mechanism by which Angus decides
+which letters to swap and from which position.
+Well, inspector Catchburgle didn't share the details of this mechanism with you, but before he went on a
+well deserved coffee break, he wrote down all the substitutions for each encoded message.
+Will you, the inspector's assistant, be able to impress the inspector by decoding the messages before he
+returns from his coffee break? It will surely help to catch the villain (and you will deserve part of the
+credit)*/
 
     static void decrypt(String message, int[] pos, String[] first_arr, String[] second_arr,int size_of_arr){
         int length_of_message = message.length();
@@ -37,7 +52,6 @@ public class Problem2 {
         }
         System.out.println(temp_message);
     }
-    //People that I have afbushed and mobbed ro wam: Heimy C., Rngflid E., Evaigeunia deM., Aetem A. (tince), pfd thpt gly inth the wlffy soldtpche
 
     public static void main(String[] args) {
         FileInputStream file_in = null;
@@ -61,7 +75,7 @@ public class Problem2 {
             second_arr[i] = in.next();
 
         }
-        System.out.println(Arrays.toString(pos_arr));
+        // System.out.println(Arrays.toString(pos_arr));
 //        System.out.println(Arrays.toString(first_arr));
 //        System.out.println(Arrays.toString(second_arr));
 
