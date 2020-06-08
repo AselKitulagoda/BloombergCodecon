@@ -4,6 +4,13 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Problem5 {
+    /* We have two players playing a game on a square grid that contains rewards.
+The two players start from the top left cell of the grid and on each move each of them moves down or to
+the right.
+They move at the same time and need to collaborate to collect the most number of rewards.
+They can occupy the same cell in the grid at the same time but the reward, if any exists in the cell, is
+collected only once.
+The game finishes when there are no more possible moves. */
 
     static void multiplayer(int[][] maze, int size_of_grid){
         List<Point> Visited_points = new ArrayList<>();
