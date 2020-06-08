@@ -68,11 +68,25 @@ The game finishes when there are no more possible moves. */
 
 
     public static class Point {
-        int x;
-        int y;
-        public Point(int x, int y){
+        Integer x;
+        Integer y;
+        public Point(Integer x, Integer y){
             this.x = x;
             this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Point temp = (Point) obj;
+            if (this.x == temp.x && this.y == temp.y){
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return (this.x.hashCode() + this.y.hashCode());
         }
     }
 
