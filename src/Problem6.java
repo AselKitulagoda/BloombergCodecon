@@ -38,7 +38,7 @@ his super powers to defeat the enemy and become a warrior. */
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream file_in = new FileInputStream(new File("src/Q6_inputs/input2.txt"));
+        FileInputStream file_in = new FileInputStream(new File("src/Q6_inputs/input.txt"));
         System.setIn(file_in);
         Scanner in = new Scanner(System.in);
 
