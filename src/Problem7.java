@@ -4,81 +4,58 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Problem7 {
+    /* Daenerys Targaryen can rule over 7 kingdoms if she has all her dragons by her side.
+Daenerys has built N dragon-pits in her kingdom. The dragon-pits are located in a straight line at
+positions x1, x2, ..., xN.
+She has C dragons. The dragons are feisty and don’t like being restrained. Once they are put into the
+dragon-pits they try to burn and bite each other.
+Tyrion, being her loyal and intelligent adviser, is given the task of preventing the dragons from hurting
+each other. To do so Tyrion wants to assign the dragons such that minimum distance between the
+dragons is as large as possible.
+Help Tyrion find the largest minimum distance.*/
 
-    static int rec_largest_distance(List<Integer> pits,List <Pit> permaPits, int no_of_dragons,int no_of_pits,int rec_pits, Integer Minimize){
-//        System.out.println("Minimize is" + Minimize);
+    public static int largestMinDist(List<Integer> pits,int no_of_dragons){
+        int result = -1;
+        int left = pits.get(0);
+        int right = pits.get(pits.size()-1);
 
-        if (rec_pits == no_of_dragons || permaPits.size() == no_of_dragons){
-            return Minimize;
+        while (left < right){
+            int mid = (left+right)/2;
+            if (checkFeasible(pits,no_of_dragons,mid)) {
+                result = Math.max(result, mid);
+                left = mid + 1;
+
+                }
+            else {
+                right = mid;
+            }
+            }
+        return result;
         }
-            List <Pit> pit_seperation = new ArrayList<Pit>();
-            pit_seperation.addAll(permaPits);
-//            System.out.println("FOR PIT SEPERATION VAL:" + pit_seperation.get(0).original_val);
 
-        for (int i = 0; i < no_of_pits; i++) {
-                if (!containsPit(pit_seperation,pits.get(i)) && !containsPit(permaPits,pits.get(i)) );
-                { Pit new_pit = new Pit(getClosestValue(permaPits,pits.get(i)),pits.get(i));
-                if (new_pit.seperationValue != 0){
-                    pit_seperation.add(new_pit);
-                }
 
-                }
-            }
-            Collections.sort(pit_seperation, (p1, p2) -> Integer.compare(p2.seperationValue, p1.seperationValue));
-            System.out.println(pit_seperation);
-            while (rec_pits < no_of_dragons){
-                for (int i=0;i < no_of_pits-1;i++) {
-                    List <Pit> tempPits = permaPits;
-                    if (!containsPit(tempPits,pit_seperation.get(i).original_val)) {
-                        if (pit_seperation.get(i).seperationValue != 0) {
-                            tempPits.add(pit_seperation.get(i));
-                            Minimize= Math.min(rec_largest_distance(pits,tempPits,no_of_dragons,no_of_pits,rec_pits+1,pit_seperation.get(i).seperationValue),Minimize);
 
-                        }
-                    }
-                }
-                rec_pits = no_of_dragons;
-            }
 
-        return Minimize;
+
+    static void min_largest_distance(List<Integer> pits, int no_of_dragons){
+        System.out.println(largestMinDist(pits,no_of_dragons));
     }
 
-
-
-    static Integer getClosestValue(List<Pit> pits,Integer value ){
-        int dist = Math.abs(pits.get(0).original_val - value);
-        int result = 0;
+    static boolean checkFeasible(List<Integer> pits, int no_of_dragons, int mid_distance){
+        List <Integer> results = new ArrayList<Integer>();
+        int current_pos = pits.get(0);
+        int elements =1;
         for (int i=1;i<pits.size();i++){
-            int temp_dist = Math.abs(pits.get(i).original_val - value);
-            if (temp_dist < dist){
-                result = i;
-                dist = temp_dist;
+            if ((pits.get(i) - current_pos)>= mid_distance){
+                current_pos = pits.get(i);
+                elements += 1;
             }
-        }
-//        System.out.println(pits.get(result));
-        return (Math.abs(pits.get(result).original_val-value));
-    }
+            if (elements == no_of_dragons){
+                return true;
+            }
 
-    static boolean containsPit (List<Pit> pits, Integer Val){
-        for (Pit i: pits){
-            if (i.original_val == Val){
-                return  true;
-            }
         }
         return false;
-    }
-
-    static void min_largest_distance(List<Integer> pits, int no_of_dragons, int no_of_pits){
-//        rec_largest_distance(pits,perma,no_of_dragons,no_of_pits);
-        for (int i=0;i<no_of_pits;i++){
-            int rec_pits = 0;
-            List <Pit> perma = new ArrayList<Pit>();
-            perma.add(new Pit(0,pits.get(i)));
-            System.out.println("MATH MIN "+rec_largest_distance(pits,perma,no_of_dragons,no_of_pits,0,Integer.MAX_VALUE));
-
-
-        }
-
     }
 
     public static class Pit {
@@ -114,7 +91,7 @@ public class Problem7 {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        FileInputStream file_in = new FileInputStream(new File("src/Q7_inputs/input.txt"));
+        FileInputStream file_in = new FileInputStream(new File("src/Q7_inputs/input1.txt"));
         System.setIn(file_in);
         Scanner in = new Scanner(System.in);
 
@@ -127,9 +104,8 @@ public class Problem7 {
             pits.add(in.nextInt());
         }
         Collections.sort(pits);
-        System.out.println(pits);
 
-        min_largest_distance(pits,no_of_dragons,no_of_pits);
+        min_largest_distance(pits,no_of_dragons);
 
         System.out.println("Problem finished");
 
