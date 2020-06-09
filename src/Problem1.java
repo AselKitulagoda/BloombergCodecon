@@ -1,15 +1,12 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class Problem {
-    /* As part of his religion, your friend hates odd numbers and empty arrays. He hates odd numbers and
+public class Problem1 {
+ /* As part of his religion, your friend hates odd numbers and empty arrays. He hates odd numbers and
 empty arrays so much that whenever he encounters an array, he tries to remove some values such that
 the resulting array has an even sum. Furthermore, the resulting array must contain a non zero even
 amount of even numbers after the transformation. When your friend can not remove any values from the
